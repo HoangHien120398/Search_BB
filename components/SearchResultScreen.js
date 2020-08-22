@@ -1,4 +1,5 @@
-import  React, {useState} from 'react';
+import  {useState} from 'react';
+import * as React from 'react';
 import {
     StyleSheet,
     View,
@@ -6,7 +7,6 @@ import {
     Image, 
     TouchableOpacity,
     TextInput,
-    image,
     FlatList,
     Dimensions,
     Linking
@@ -20,7 +20,7 @@ import DropdownMenu from 'react-native-dropdown-menu';
 import AutoHeightImage from 'react-native-auto-height-image';
 import Constant from '../constant/Constant';
 
-const data = [
+const dataList = [
   {
       src: Constant.SearchResultScreen.banner,
       money: '3.9000.000.000 đ',
@@ -112,56 +112,54 @@ export default function SearchResultScreen({navigation}) {
                ["Diện tích","75m2","100m2"]];
 
     return (
-
-    <SafeAreaView style={{flex: 1}}>
-      
-      <View style={styles.header}>
+    <SafeAreaView style={styles.container}>
+        <View style={styles.header}>
         <TouchableOpacity onPress={() => navigation.goBack()}
         style={styles.iconback}
         >
           <Icon name="chevron-left" size={30} color="black" 
           style={{textAlign:'center', marginTop: 10}} />
         </TouchableOpacity>
-        
-        <TextInput
-          placeholder = "Tìm địa điểm, căn hộ chung cư..."
-          style={{ height: 50, borderColor: '#468684', borderWidth: 1, flex: 8 }}
-          onChangeText={text => onChangeTextSearch(text)}
-          value={valueSearch}
-          //style={styles.search}
-          />
-      </View>
-      
-      <DropdownMenu
-        style={{flex: 1}}
-        bgColor={'white'}
-        tintColor={'#666666'}
-        activityTintColor={'#238778'}
-        handler={(selection, row) => onChangeTextMenu({text: data[selection][row]})}
-        data={data}
-        
-      >
-      </DropdownMenu> 
-      <TouchableOpacity onPress = {() => Linking.openURL('https://www.facebook.com/')} style={{ flex: 5}}>
+            <TextInput
+                placeholder = "Tìm địa điểm, căn hộ chung cư..."
+                style={{ height: 50, borderColor: '#468684', borderWidth: 1, flex: 8 }}
+                onChangeText={text => onChangeTextSearch(text)}
+                value={valueSearch}
+          />    
+        </View>
+        <View>
+            <View style = {{height: 200}}></View>
+            <View style = {{height: 50, width: Dimensions.get('window').width, position: "absolute", top: 0, left: 0}}>
+                <DropdownMenu
+                    style={{flex: 1}}
+                    bgColor={'white'}
+                    tintColor={'#666666'}
+                    activityTintColor={'#238778'}
+                    handler={(selection, row) => onChangeTextMenu({text: data[selection][row]})}
+                    data={data}
+                >
+                </DropdownMenu>
+            </View>
+            <TouchableOpacity onPress = {() => Linking.openURL('https://www.facebook.com/')}>
                 <AutoHeightImage
                     width = {Dimensions.get('window').width}
-                    source = {Constant.SearchResultScreen.banner}
+                source = {Constant.SearchResultScreen.banner}
                 />
             </TouchableOpacity>
-            
-            <FlatList
-                ListHeaderComponent = {() => <Header money = {"3000"}/>}
-                renderItem = {({item}) => 
-                    <Item 
-                        money = {item.money}
-                        address = {item.address}
-                        numberbedroom = {item.numberbedroom}
-                        numberbathroom= {item.numberbathroom}
-                        date = {item.date}
-                        size = {item.size}/>    
-                 }
-                data = {data}
-                />
+        </View>  
+     <FlatList
+        ListHeaderComponent = {() => <Header money = {"3000"}/>}
+        renderItem = {({item}) => 
+            <Item 
+                money = {item.money}
+                address = {item.address}
+                numberbedroom = {item.numberbedroom}
+                numberbathroom= {item.numberbathroom}
+                date = {item.date}
+                size = {item.size}/>    
+            }
+        data = {dataList}
+        />
 
   </SafeAreaView>
       
@@ -175,16 +173,54 @@ const styles = StyleSheet.create({
     },
     
     header:{
-        flexDirection:'row',
-        flex: 1,
-        //height:50
+        flexDirection:'row'
     },
     iconback:{
-        flex: 1,
         backgroundColor:'#468684',
         height: 50
     },
 
+    headertext: {
+        marginTop: 5,
+        marginBottom: 5,
+        fontWeight: "bold"
+    },
+
+    itemtext: {
+        position: 'absolute',
+        bottom: 5,
+        left: 5,
+        color: 'white',
+        fontWeight: "bold"
+    },
+
+    addresstext: {
+        marginTop: 2,
+        marginBottom: 2,
+        marginLeft: 5
+    },
+
+    detailinformation: {
+        flexDirection: 'row',
+        justifyContent: "space-between",
+        marginBottom: 5
+    },
+
+    detail: {
+        flex: 1,
+        flexDirection: 'row',
+        marginLeft: 5
+    },
+
+    date: {
+        flex: 1,
+        alignItems: 'flex-end',
+        marginRight: 5
+    }
+
 })
+
+
+
 
 

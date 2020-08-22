@@ -57,7 +57,8 @@ class Constant {
     static SearchResultScreen = {
         bedroom: require('../assets/phong-ngu-icon.png'),
         bathroom: require('../assets/nha-tam-icon.png'),
-        banner: require('../assets/banner.png')
+        banner: require('../assets/banner.png'),
+        goTo :'Contact'
     }
 
     static fisrtquery = {
