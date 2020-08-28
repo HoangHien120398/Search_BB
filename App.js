@@ -20,8 +20,9 @@ import CategoryScreen from './components/CategoryScreen.js'
 import LocationScreen from './components/LocationScreen.js'
 import MoneyScreen from './components/MoneyScreen.js'
 import SearchResultScreen from './components/SearchResultScreen.js'
-//import ProductDetailScreen from './components/ProductDetailScreen.js'
+import ProductDetailScreen from './components/ProductDetailScreen.js'
 import ContactScreen from './components/ContactScreen';
+import controlTabScreen from './components/controlTabScreen'
 
 const Stack = createStackNavigator();
 
@@ -35,8 +36,8 @@ export default function App() {
         <Stack.Screen name="Ngân sách của bạn là bao nhiêu ?" component={MoneyScreen} options = {{title: "NGÂN SÁCH CỦA BẠN"}} />
         <Stack.Screen name="Search" component={SearchResultScreen} options = {{headerShown: false}}/>
         <Stack.Screen name="Contact" component={ContactScreen} options = {{title: "CONTACT"}} /> 
-        
-        {/* <Stack.Screen name="Details" component={ProductDetailScreen}/> */}
+        <Stack.Screen name="Details" component={ProductDetailScreen} options = {{headerShown: false}}/>
+        <Stack.Screen name="control" component={controlTabScreen} options = {{title:"control"}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
