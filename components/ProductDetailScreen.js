@@ -29,7 +29,7 @@ export default function App({ navigation }) {
        <View>
         <AutoHeightImage
           width = {Dimensions.get('window').width}
-          source = {require('../assets/banner.png')}/>
+          source = {require('../assets/detail_1.png')}/>
           
         <IconButton
           icon="arrow-left"

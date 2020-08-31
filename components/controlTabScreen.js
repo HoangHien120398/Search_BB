@@ -2,15 +2,24 @@
 import React, { Component, useState } from 'react';
 //Import React
 
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet,
+   Text,
+    View,
+    AppRegistry,
+    processColor,
+    Button,
+    Dimensions
+   } from 'react-native';
 //Import Basic React Native Component
 
 import SegmentedControlTab from 'react-native-segmented-control-tab';
 //Import SegmentedControlTab
 
+import {LineChart} from 'react-native-charts-wrapper';
 
+import Constant from '../constant/Constant';
 //Screen này để em thử nếu ok thì em cho vào sau
-export default function Control() {
+export default function Control({navigation}) {
   const [customStyleIndex, setcustomStyleIndex] = useState(0);
     return (
       <View style={styles.container}>
@@ -33,13 +42,35 @@ export default function Control() {
           activeTabStyle={{ backgroundColor: 'white', marginTop: 2 }}
           tabTextStyle={{ color: '#444444', fontWeight: 'bold' }}
           activeTabTextStyle={{ color: '#888888' }}
+          style={styles.control}
         />
         {customStyleIndex === 0 && (
-          <Text style={styles.tabContent}> Tab one</Text>
+          <View style={styles.tabContent}>
+                <View style={styles.chart}>
+                  <LineChart style={styles.linechart}
+                    data={{dataSets:[{label: "demo1", values: [{y: 1}, {y: 2}, {y: 1}]}]}}
+                  />
+              </View>
+
+             </View>
         )}
         {customStyleIndex === 1 && (
-          <Text style={styles.tabContent}> Tab two</Text>
+          <View style={styles.tabContent}>
+             <View style={styles.chart}>
+               <LineChart style={styles.linechart}
+                 data={{dataSets:[{label: "demo2", values: [{y: 1}, {y: 2}, {y: 1}]}]}}
+               />
+           </View>
+
+          </View>
         )}
+
+      <Button style = {styles.button} mode = 'contained' 
+        onPress = {() =>navigation.navigate(Constant.controlTabScreen.goTo)}>
+          <Text style={{ color:'#cee8e4', fontSize: 15}}>Yêu cầu thêm thông tin</Text>
+         
+        </Button>
+        
       </View>
     );
   }
@@ -57,11 +88,16 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#444444',
     textAlign: 'center',
+    flex: 1
+  },
+  control:{
+    flex: 10
   },
   tabContent: {
     color: '#444444',
     fontSize: 18,
     margin: 24,
+    flex: 1
   },
   Seperator: {
     marginHorizontal: -10,
@@ -76,6 +112,24 @@ const styles = StyleSheet.create({
   activeTabStyle: {
     backgroundColor: '#D52C43',
   },
+  
+  chart: {
+    flex: 1,
+    backgroundColor: '#F5FCFF'
+  },
+ linechart: {
+    flex: 1
+  },
+  button: {
+    position: 'absolute',
+    bottom: 0,
+    width: Dimensions.get('window').width,
+    height: 50,
+    backgroundColor: '#00aa97',
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
 });
 
 // export default App;

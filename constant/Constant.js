@@ -62,7 +62,7 @@ class Constant {
     }
     static ProductDetailsScreen = {
         
-        goTo :'control'
+        goTo :'Chart'
     }
 
     static fisrtquery = {

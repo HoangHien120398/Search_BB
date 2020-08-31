@@ -24,16 +24,16 @@
     "react-native-ionicons": "^4.6.5",
     "react-native-option-select": "^1.0.4",
     "react-native-paper": "^4.0.1",
+    "react-native-pathjs-charts": "0.0.34",
     "react-native-reanimated": "^1.10.2",
     "react-native-safe-area-context": "^3.1.4",
     "react-native-screens": "^2.10.1",
     "react-native-segmented-control-tab": "^3.4.1",
-    "react-native-svg": "^12.1.0",
     "react-native-vector-icons": "^7.0.0"
   },
   "devDependencies": {
     "@babel/core": "7.11.1",
-    "@babel/runtime": "7.11.2",
+    "@babel/runtime": "^7.11.2",
     "@react-native-community/eslint-config": "1.1.0",
     "babel-jest": "25.5.1",
     "eslint": "6.8.0",

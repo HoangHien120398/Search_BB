@@ -23,6 +23,7 @@ import SearchResultScreen from './components/SearchResultScreen.js'
 import ProductDetailScreen from './components/ProductDetailScreen.js'
 import ContactScreen from './components/ContactScreen';
 import controlTabScreen from './components/controlTabScreen'
+import ChartScreen from './components/ChartScreen'
 
 const Stack = createStackNavigator();
 
@@ -38,6 +39,7 @@ export default function App() {
         <Stack.Screen name="Contact" component={ContactScreen} options = {{title: "CONTACT"}} /> 
         <Stack.Screen name="Details" component={ProductDetailScreen} options = {{headerShown: false}}/>
         <Stack.Screen name="control" component={controlTabScreen} options = {{title:"control"}}/>
+        <Stack.Screen name="Chart" component={ChartScreen} options = {{title:"chart"}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
