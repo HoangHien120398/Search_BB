@@ -4,13 +4,20 @@ import {
   View,
   Text,
   Image, 
-  TouchableOpacity, SafeAreaView, Dimensions, ScrollView
+  TouchableOpacity, SafeAreaView, Dimensions, ScrollView,
+  Linking
 } from 'react-native';
 import AutoHeightImage from 'react-native-auto-height-image';
-import { IconButton, Colors, Card, Button,  List  } from 'react-native-paper';
+import {
+   IconButton,
+   Colors,
+   Card,
+   Button,
+   List  } from 'react-native-paper';
 import Constant from '../constant/Constant';
 //import { black } from 'react-native-paper/lib/typescript/src/styles/colors';
 import SegmentedControlTab from 'react-native-segmented-control-tab';
+import {LineChart} from 'react-native-charts-wrapper';
 // Setup Icon.Button onPress quay lại 
 // Chưa Xử Lý SegmentControlTab
 // Cài npm install -i react-native-segmented-control-tab --save
@@ -20,6 +27,7 @@ export default function App({ navigation }) {
   const [expanded2, setExpanded2] = React.useState(false)
   const [expanded3, setExpanded3] = React.useState(false)
   const [expanded4, setExpanded4] = React.useState(false)
+  const [expanded5, setExpanded5] = React.useState(false)
   const [customStyleIndex, setcustomStyleIndex] = React.useState(0);
 
   const handlePress = (expanded, setExpanded) => setExpanded(!expanded);
@@ -69,6 +77,7 @@ export default function App({ navigation }) {
           </View>
           <List.Section>
             <List.Accordion
+                style={{ flex: 1}}
                 title = {<Text style = {styles.headerstyle}>
                   Miêu tả chi tiết
                 </Text>}
@@ -80,76 +89,23 @@ export default function App({ navigation }) {
                   <Text style = {styles.textinformationdetail, { fontSize: 15},{color:'#667b78'}}>Giao Thông: {}</Text>
                 </View>
             </List.Accordion>
-            <List.Accordion
-              title = {<Text style = {styles.headerstyle}>
-                Tình hình thị trường
-              </Text>}
-              expanded={expanded2}
-              onPress={() => handlePress(expanded2, setExpanded2)}
+            <TouchableOpacity
+                onPress={() => Linking.openURL('https://www.facebook.com/')}
+                style={styles.buttonMarket}
             >
-              <View style = {{flexDirection: "row"}}>
-                <Text style = {{flex: 1, textAlign: 'center', marginLeft: 10,color:'#667b78'}}>Giá trị trung bình theo đường{"\n"}</Text>
-                <Text style = {{flex: 1, textAlign: 'center',color:'#667b78'}}>Giá trị trung bình theo quận{"\n"}</Text>
-                <Text style = {{flex: 1, textAlign: 'center',marginRight: 10,color:'#667b78'}}>Giá trị dự báo trong 2021{"\n"}</Text>
-              </View>
-            </List.Accordion>
+              <Text style = {styles.headerstyle}>
+                    Thông tin chi tiêt dự án
+              </Text>
+            </TouchableOpacity>
 
-            <List.Accordion
-              title = {<Text style = {styles.headerstyle}>
-                Giá các căn hộ tương tự
-              </Text>}
-              expanded={expanded3}
-              onPress={() => handlePress(expanded3, setExpanded3)}
-            > 
-              <View>
-                <View style = {{flexDirection: "row", marginLeft: 15, borderBottomWidth: 1,
-                borderColor: 'black'}}>
-                  <Text style = {{flex: 1, textAlign: 'center', borderRightWidth: 1,color:'#667b78'}}>Đống Đa{"\n"}</Text>
-                  <Text style = {{flex: 1, textAlign: 'center', borderRightWidth: 1,color:'#667b78'}}>Hai Bà Trưng{"\n"}</Text>
-                  <Text style = {{flex: 1, textAlign: 'center', borderRightWidth: 1,color:'#667b78'}}>Hoàng Mai{"\n"}</Text>
-                </View>
-                <View style = {{flexDirection: "row", marginLeft: 15}}>
-                  <Text style = {{flex: 1, textAlign: 'center', borderRightWidth: 1,
-                borderColor: 'black',color:'#667b78'}}>Hoàn Kiếm{"\n"}</Text>
-                  <Text style = {{flex: 1, textAlign: 'center', borderRightWidth: 1,
-                borderColor: 'black',color:'#667b78'}}>Thanh Xuân{"\n"}</Text>
-                  <Text style = {{flex: 1, textAlign: 'center', borderRightWidth: 1,
-                borderColor: 'black',color:'#667b78'}}>Tây Hồ{"\n"}</Text>
-                </View>
-              </View>
-            </List.Accordion>
-            <List.Accordion
-              title = {<Text style = {styles.headerstyle}>
-                Biến động giá
-              </Text>}
-              expanded={expanded4}
-              onPress={() => handlePress(expanded4, setExpanded4)}>
-                <View>
-                  <View>
-                  <SegmentedControlTab
-                        values={['Diện tích', 'Phân khúc']}
-                        selectedIndex={customStyleIndex}
-                        onTabPress={setcustomStyleIndex}
-                        borderRadius={0}
-                        tabsContainerStyle={{ height: 50, backgroundColor: '#F2F2F2' }}
-                        tabStyle={{
-                          backgroundColor: '#F2F2F2',
-                          borderWidth: 0,
-                          borderColor: 'transparent',
-                        }}
-                        activeTabStyle={{ backgroundColor: 'white', marginTop: 2 }}
-                        tabTextStyle={{ color: '#444444', fontWeight: 'bold' }}
-                        activeTabTextStyle={{ color: '#888888' }}
-                      />
-                    {customStyleIndex === 0 && (
-                      <Text style={styles.tabContent}> Tab one</Text>
-                    )}
-                    {customStyleIndex === 1 && (
-                      <Text style={styles.tabContent}> Tab two</Text>
-                    )}
-                  </View>
-                </View>
-            </List.Accordion>
+            <TouchableOpacity
+                  onPress = {() =>navigation.navigate(Constant.MarketScreen.goTo)}
+                  style={styles.buttonMarket}
+                  >
+                  <Text style = {styles.headerstyle}>
+                       Tình hình thị trường
+                  </Text>
+            </TouchableOpacity>
           </List.Section>
         </ScrollView>
         <View style = {{height: 50}}></View>
@@ -177,6 +133,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  buttonMarket:{
+    width: Dimensions.get('window').width,
+    height: 50,
+  },
 
   informationview: {
     justifyContent: 'center',
@@ -200,11 +160,19 @@ const styles = StyleSheet.create({
     fontWeight: 'bold', 
     fontSize: 25,
     color: '#506461',
-    //backgroundColor: '#e8f3f1'
+    //backgroundColor: '#e8f3f1',
+    marginLeft: 20,
+    marginTop: 20
   },
 
   tabsContainerStyle: {
     backgroundColor: '#6c7a89',
   },
 
+  chart:{
+    flex: 1
+  },
+  linechart: {
+    flex: 1
+  }
 })

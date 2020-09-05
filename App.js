@@ -22,9 +22,9 @@ import MoneyScreen from './components/MoneyScreen.js'
 import SearchResultScreen from './components/SearchResultScreen.js'
 import ProductDetailScreen from './components/ProductDetailScreen.js'
 import ContactScreen from './components/ContactScreen';
-import controlTabScreen from './components/controlTabScreen'
+import MarketScreen from './components/MarketScreen'
 import ChartScreen from './components/ChartScreen'
-
+import ContactScreen_true from './components/ContactScreen_true'
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -38,8 +38,9 @@ export default function App() {
         <Stack.Screen name="Search" component={SearchResultScreen} options = {{headerShown: false}}/>
         <Stack.Screen name="Contact" component={ContactScreen} options = {{title: "CONTACT"}} /> 
         <Stack.Screen name="Details" component={ProductDetailScreen} options = {{headerShown: false}}/>
-        <Stack.Screen name="control" component={controlTabScreen} options = {{title:"control"}}/>
+        <Stack.Screen name="Market" component={MarketScreen} options = {{title:"MARKET"}}/>
         <Stack.Screen name="Chart" component={ChartScreen} options = {{title:"chart"}}/>
+        <Stack.Screen name="Contact_true" component={ContactScreen_true} options = {{headerShown: false}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

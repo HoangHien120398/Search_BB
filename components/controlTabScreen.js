@@ -15,6 +15,7 @@ import { StyleSheet,
 import SegmentedControlTab from 'react-native-segmented-control-tab';
 //Import SegmentedControlTab
 
+//install react-native-charts-wrapper
 import {LineChart} from 'react-native-charts-wrapper';
 
 import Constant from '../constant/Constant';

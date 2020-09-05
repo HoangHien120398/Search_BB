@@ -58,13 +58,21 @@ class Constant {
         bedroom: require('../assets/phong-ngu-icon.png'),
         bathroom: require('../assets/nha-tam-icon.png'),
         banner: require('../assets/banner.png'),
-        goTo :'Details'
+        goTo :'Details',
+        
     }
     static ProductDetailsScreen = {
         
-        goTo :'Chart'
+        goTo :'Contact'
     }
-
+    static ContactScreen = {
+        
+        goTo :'Contact_true'
+    }
+    static MarketScreen = {
+        
+        goTo :'Market'
+    }
     static fisrtquery = {
         
     }

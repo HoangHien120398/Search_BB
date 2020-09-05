@@ -20,11 +20,21 @@ import AutoHeightImage from 'react-native-auto-height-image';
 import Constant from '../constant/Constant';
 //import ProductDetailScreen from '../components/ProductDetailScreen';
 
+
 const dataList = [
   {
     src: Constant.SearchResultScreen.banner,
     money: '3.9000.000.000 đ',
     address: 'Tổ 3, Trung Sơn, Tam Điệp, Ninh Bình',
+    numberbedroom: '3',
+    numberbathroom: '2',
+    size: '102.6m²',
+    date: '5/8/2020',
+  },
+  {
+    src: Constant.SearchResultScreen.banner,
+    money: '3.9000.000.000 đ',
+    address: '123',
     numberbedroom: '3',
     numberbathroom: '2',
     size: '102.6m²',
@@ -126,6 +136,66 @@ export default function SearchResultScreen({navigation}) {
     ['Diện tích', '75m2', '100m2'],
   ];
 
+if(valueSearch=='123')
+{
+  return (
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <TouchableOpacity
+          onPress={() => navigation.goBack()}
+          style={styles.iconback}>
+          <Icon
+            name="chevron-left"
+            size={30}
+            color="black"
+            style={{textAlign: 'center', marginTop: 10}}
+          />
+        </TouchableOpacity>
+        <TextInput
+          placeholder="Tìm địa điểm, căn hộ chung cư..."
+          style={{height: 50, borderColor: '#468684', borderWidth: 1, flex: 8}}
+          onChangeText={(text) => onChangeTextSearch(text)}
+          value={valueSearch}
+        />
+      </View>
+      <View style={{flex: 1}}>
+        {/* Filter bar */}
+        <DropdownMenu
+          bgColor={'white'}
+          tintColor={'#666666'}
+          activityTintColor={'#238778'}
+          handler={(selection, row) =>
+            onChangeTextMenu({text: data[selection][row]})
+          }
+          data={data}>
+          <TouchableOpacity
+            onPress={() => Linking.openURL('https://www.facebook.com/')}>
+            <AutoHeightImage
+              width={Dimensions.get('window').width}
+              height={100}
+              source={{uri: BANNER}}
+            />
+          </TouchableOpacity>
+
+          {/* Label List */}
+          <Text
+            style={{
+              fontSize: 18,
+              marginVertical: 8,
+              color: '#707070',
+              marginLeft: 8,
+            }}>
+            Danh sách phù hợp
+          </Text>
+
+          {/* Danh sách địa chỉ */}
+          
+          <Text style={styles.texterror}> Không tìm thấy địa chỉ bạn cần tìm</Text>
+        </DropdownMenu>
+      </View>
+    </View>
+  );
+}
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -178,7 +248,7 @@ export default function SearchResultScreen({navigation}) {
 
           {/* Danh sách địa chỉ */}
           <FlatList
-            // ListHeaderComponent={() => <Header money={'3000'} />}
+             ListHeaderComponent={() => <Header money={'3000'} />}
             renderItem={({item, index}) => (
               <Item
                 index={index}
